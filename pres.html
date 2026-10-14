@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Técnica - TechParts Store | UNIFASAR</title>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #050811;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-cyan: #00f2fe;
+      --accent-blue: #38bdf8;
+      --accent-green: #10b981;
+      --accent-yellow: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --accent-red: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --code-bg: #090d16;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(0, 242, 254, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 85%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide-viewport {
+      position: relative;
+      width: 92vw;
+      max-width: 1320px;
+      height: 86vh;
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 242, 254, 0.08);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 3rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      opacity: 0;
+      transform: translateY(20px) scale(0.99);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    /* SLIDE 1 - CAPA ELABORADA */
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .uni-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .uni-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .uni-logo-box {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #000;
+      font-weight: 900;
+      font-size: 1.2rem;
+      padding: 8px 16px;
+      border-radius: 10px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    .uni-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .uni-name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .uni-course {
+      font-size: 0.88rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .hero-main {
+      margin: auto 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 30px;
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      font-weight: 900;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 80%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.2rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 950px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .hero-card:hover {
+      border-color: rgba(0, 242, 254, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-3px);
+    }
+
+    .hero-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .hero-card-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .authors-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-pill {
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      font-size: 0.95rem;
+    }
+
+    /* Tipografia e Estilos Gerais */
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-blue));
+      border-radius: 3px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .info-card h3 {
+      font-size: 1.1rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .info-card p, .info-card ul {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .info-card ul {
+      list-style-type: none;
+    }
+
+    .info-card ul li {
+      margin-bottom: 0.45rem;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .info-card ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+    }
+
+    pre code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.82rem;
+      background: var(--code-bg);
+      padding: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: block;
+      color: var(--accent-blue);
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.45;
+    }
+
+    /* Barra de Progresso */
+    .top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      transition: width 0.3s ease;
+    }
+
+    .nav-hint {
+      position: absolute;
+      bottom: 18px;
+      right: 25px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .key-badge {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
+
+    .slide-number {
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    /* Slide Final */
+    .thanks-container {
+      text-align: center;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thanks-title {
+      font-size: 4.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .thanks-text {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-viewport" id="viewport">
+    
+    <div class="top-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+
+    <!-- SLIDE 1: CAPA SUPER ELABORADA (UNIFASAR + BRUNO CORRÊA & VITOR GABRIEL) -->
+    <div class="slide active">
+      <div class="hero-container">
+        
+        <div class="uni-header">
+          <div class="uni-brand">
+            <div class="uni-logo-box">UNIFASAR</div>
+            <div class="uni-info">
+              <span class="uni-name">Centro Universitário UNIFASAR</span>
+              <span class="uni-course">Curso de Engenharia de Software</span>
+            </div>
+          </div>
+          <div class="hero-badge">⚡ Trabalho Prático de Programação</div>
+        </div>
+
+        <div class="hero-main">
+          <h1 class="hero-title">TechParts Store</h1>
+          <p class="hero-subtitle">
+            Análise arquitetural, mapeamento de memória, controle de fluxo e persistência de dados em arquivos do Sistema de Gestão de Peças de Computador em C#.
+          </p>
+
+          <div class="hero-cards-grid">
+            <div class="hero-card">
+              <div class="hero-card-icon">🧠</div>
+              <div class="hero-card-title">Arquitetura</div>
+              <div class="hero-card-value">Console & Structs</div>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icon">💾</div>
+              <div class="hero-card-title">Persistência</div>
+              <div class="hero-card-value">Arquivos .TXT</div>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icon">🛡️</div>
+              <div class="hero-card-title">Segurança</div>
+              <div class="hero-card-value">Sanitização/Validação</div>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icon">📊</div>
+              <div class="hero-card-title">Relatórios</div>
+              <div class="hero-card-value">Vendas por Categoria</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-footer">
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Desenvolvido Por</span>
+            <div class="authors-box">
+              <span class="author-pill">Bruno Corrêa</span>
+              <span class="author-pill">Vitor Gabriel</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <span style="font-size:0.85rem; color:var(--text-muted); display:block;">Linguagem C# (.NET Framework / Core)</span>
+            <span style="font-size:0.85rem; color:var(--accent-purple); font-weight:600;">Engenharia de Software 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SLIDE 2: VISÃO GERAL DO SISTEMA -->
+    <div class="slide">
+      <h2>1. Visão Geral da Arquitetura</h2>
+      <p class="section-desc">Estruturação completa e responsabilidades dos componentes do programa.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Modelo de Execução Monolítico em Console</h3>
+          <ul>
+            <li>A aplicação roda em loop contínuo sobre o terminal utilizando codificação UTF-8.</li>
+            <li>Inicia carregando os arquivos físicos para a memória antes de interagir com o usuário.</li>
+            <li>Divide suas funções em 4 grandes pilares: Estruturas de Dados, Operações do Menu, Persistência e Utilitários.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Namespaces e Dependências Importadas</h3>
+          <pre><code>using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Reflection;</code></pre>
+          <p style="margin-top:0.6rem;">Importação de suporte a coleções dinâmicas (<code>List&lt;T&gt;</code>), formatação regional (<code>CultureInfo</code>) e manipulação de arquivos (<code>File</code>, <code>StreamWriter</code>).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: ESTRUTURA PRODUTO -->
+    <div class="slide">
+      <h2>2. Modelagem de Dados: struct Produto</h2>
+      <p class="section-desc">Representação em memória dos itens do estoque da loja.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Definição da Struct</h3>
+          <pre><code>struct Produto
+{
+    public string Nome;
+    public string Categoria;
+    public int Quantidade;
+    public decimal Preco;
+}</code></pre>
+          <ul style="margin-top:0.8rem;">
+            <li>Uso do tipo valor <code>struct</code> para alocação eficiente na pilha (stack).</li>
+            <li>Tipo <code>decimal</code> para o preço, evitando imprecisões de ponto flutuante em valores monetários.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Sobrescrita de ToString()</h3>
+          <pre><code>public override string ToString()
+{
+    return "Nome: " + Nome +
+           " | Categoria: " + Categoria +
+           " | Estoque: " + Quantidade +
+           " | Preço: " + Preco;
+}</code></pre>
+          <p style="margin-top:0.8rem;">Centraliza a formatação visual do produto para exibição rápida em listagens e consultas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: ESTRUTURA VENDA -->
+    <div class="slide">
+      <h2>3. Modelagem de Dados: struct Venda</h2>
+      <p class="section-desc">Registro do histórico de transações efetuadas pelo sistema.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Campos da Venda</h3>
+          <pre><code>struct Venda
+{
+    public string NomeProduto;
+    public string Categoria;
+    public int Quantidade;
+    public decimal PrecoUnitario;
+    public decimal Total;
+    public string Data;
+}</code></pre>
+          <ul style="margin-top:0.8rem;">
+            <li>Grava o estado exato da transação no momento em que a venda foi realizada.</li>
+            <li>Guarda a data e hora formatadas como texto para consulta nos relatórios.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Formatador de Transação</h3>
+          <pre><code>public override string ToString()
+{
+    return Data + " | " + NomeProduto +
+           " | Categoria: " + Categoria +
+           " | Quantidade: " + Quantidade +
+           " | Total: " + Total;
+}</code></pre>
+          <p style="margin-top:0.8rem;">Gera a linha resumida que é impressa no relatório de vendas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: ESTADO GLOBAL -->
+    <div class="slide">
+      <h2>4. Armazenamento em Memória e Variáveis Globais</h2>
+      <p class="section-desc">Coleções estáticas que mantêm o estado do programa ativo.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Listas Dinâmicas Estáticas</h3>
+          <pre><code>static List&lt;Produto&gt; produtos = new List&lt;Produto&gt;();
+static List&lt;Venda&gt; vendas = new List&lt;Venda&gt;();</code></pre>
+          <ul style="margin-top:0.8rem;">
+            <li>Permitem adição e remoção de elementos sem necessidade de definir tamanho fixo prévio.</li>
+            <li>Acessíveis por todas as funções estáticas da classe <code>Program</code>.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Definição dos Caminhos de Arquivo</h3>
+          <pre><code>static string arquivoProdutos = "produtos.txt";
+static string arquivoVendas = "vendas.txt";</code></pre>
+          <p style="margin-top:0.8rem;">Mapeia os nomes dos arquivos de texto no diretório de execução para persistência.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: METODO MAIN -->
+    <div class="slide">
+      <h2>5. Ponto de Entrada: Método Main()</h2>
+      <p class="section-desc">Inicialização da aplicação e carregamento inicial dos dados.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Configuração de Codificação UTF-8</h3>
+          <pre><code>Console.OutputEncoding = System.Text.Encoding.UTF8;</code></pre>
+          <p style="margin-top:0.8rem;">Garante que acentos, cedilhas e os caracteres do desenho ASCII do terminal sejam exibidos corretamente.</p>
+        </div>
+        <div class="info-card">
+          <h3>Restauração de Dados Físicos</h3>
+          <pre><code>CarregarProdutos();
+CarregarVendas();</code></pre>
+          <p style="margin-top:0.8rem;">Lê os arquivos <code>produtos.txt</code> e <code>vendas.txt</code> preenchendo as listas globais antes do menu.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: LAÇO DO MENU -->
+    <div class="slide">
+      <h2>6. Menu Interativo e Laço do-while</h2>
+      <p class="section-desc">O coração do controle da interface de usuário.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Design do Cabecalho ASCII</h3>
+          <p>Exibe um logotipo decorativo em cor ciano (<code>ConsoleColor.Cyan</code>) a cada ciclo do menu.</p>
+          <p style="margin-top:0.5rem;">Utiliza <code>Console.Clear()</code> para manter a tela limpa entre cada operação.</p>
+        </div>
+        <div class="info-card">
+          <h3>Roteamento por switch-case</h3>
+          <pre><code>switch (opcao)
+{
+    case "1": CadastrarProduto(); break;
+    case "2": ListarEstoque(); break;
+    case "3": ConsultarProduto(); break;
+    case "4": ExcluirProduto(); break;
+    case "5": RealizarVenda(); break;
+    case "6": RelatorioVendas(); break;
+    case "0000": Console.WriteLine("Saindo..."); break;
+    default: Erro("Opcao invalida."); break;
+}</code></pre>
+          <p style="margin-top:0.5rem;">Direciona o fluxo para a função solicitada e aguarda tecla em <code>Pausar()</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: CADASTRO PRODUTO -->
+    <div class="slide">
+      <h2>7. Módulo de Cadastro: CadastrarProduto()</h2>
+      <p class="section-desc">Passo a passo da adição de novos itens ao estoque.</p>
+      <div class="grid-3">
+        <div class="info-card">
+          <h3>1. Coleta e Validação</h3>
+          <p>Lê o nome do produto via <code>LerTexto()</code> e a categoria por <code>EscolherCategoria()</code>.</p>
+          <p style="margin-top:0.5rem;">Lê quantidade inicial (min: 0) e preço inicial (min: 0) com validação rígida.</p>
+        </div>
+        <div class="info-card">
+          <h3>2. Checagem de Duplicados</h3>
+          <pre><code>int indice = EncontrarProduto(novo.Nome);
+if (indice >= 0)
+{
+    Erro("Produto ja existe.");
+    return;
+}</code></pre>
+          <p style="margin-top:0.5rem;">Impede a inclusão de peças repetidas.</p>
+        </div>
+        <div class="info-card">
+          <h3>3. Inclusão e Gravação</h3>
+          <pre><code>produtos.Add(novo);
+SalvarProdutos();
+Sucesso("Produto cadastrado...");</code></pre>
+          <p style="margin-top:0.5rem;">Adiciona à lista e persiste imediatamente no disco.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: ESCOLHER CATEGORIA -->
+    <div class="slide">
+      <h2>8. Módulo de Categorização: EscolherCategoria()</h2>
+      <p class="section-desc">Padronização das categorias de hardware disponíveis na loja.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Menu Numerado de Opções</h3>
+          <ul>
+            <li><strong>1:</strong> Processador</li>
+            <li><strong>2:</strong> Placa de video</li>
+            <li><strong>3:</strong> Memoria RAM</li>
+            <li><strong>4:</strong> SSD/HD</li>
+            <li><strong>5:</strong> Placa-mae</li>
+            <li><strong>6:</strong> Fonte</li>
+            <li><strong>7:</strong> Periferico</li>
+            <li><strong>8:</strong> Outro</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Validação de Seleção</h3>
+          <pre><code>int opcao = LerInteiro("Categoria: ", 1, 8);
+switch (opcao)
+{
+    case 1: return "Processador";
+    case 2: return "Placa de video";
+    ...
+    default: return "Outro";
+}</code></pre>
+          <p style="margin-top:0.8rem;">Garante que a categoria seja sempre uma string válida e sem inconsistências de digitação.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: LISTAR ESTOQUE -->
+    <div class="slide">
+      <h2>9. Módulo de Listagem: ListarEstoque()</h2>
+      <p class="section-desc">Varredura e impressão do estoque atual cadastrado.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Verificação de Lista Vazia</h3>
+          <pre><code>if (produtos.Count == 0)
+{
+    Console.WriteLine("Nenhum produto cadastrado.");
+    return;
+}</code></pre>
+          <p style="margin-top:0.8rem;">Evita tentar percorrer uma coleção sem elementos.</p>
+        </div>
+        <div class="info-card">
+          <h3>Laço de Exibição Numerada</h3>
+          <pre><code>for (int i = 0; i < produtos.Count; i++)
+{
+    Console.WriteLine((i + 1) + ". " + produtos[i]);
+}
+Console.WriteLine("\nTotal: " + produtos.Count);</code></pre>
+          <p style="margin-top:0.8rem;">Percorre os produtos imprimindo o índice somado em 1 juntamente com o <code>ToString()</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: CONSULTAR PRODUTO -->
+    <div class="slide">
+      <h2>10. Módulo de Busca: ConsultarProduto()</h2>
+      <p class="section-desc">Pesquisa parcial de itens por nome sem diferenciação de caixa.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Algoritmo de Busca Parcial</h3>
+          <pre><code>for (int i = 0; i < produtos.Count; i++)
+{
+    if (produtos[i].Nome.IndexOf(
+        nome, 
+        StringComparison.OrdinalIgnoreCase) >= 0)
+    {
+        Console.WriteLine(produtos[i]);
+        encontrou = true;
+    }
+}</code></pre>
+        </div>
+        <div class="info-card">
+          <h3>Destaques de Funcionamento</h3>
+          <ul>
+            <li><strong>IndexOf:</strong> Permite encontrar termos parciais (ex: buscar "RTX" encontra "Placa RTX 3060").</li>
+            <li><strong>OrdinalIgnoreCase:</strong> Ignora maiúsculas e minúsculas na busca.</li>
+            <li>Exibe múltiplos produtos caso a busca coincida com mais de um item.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: EXCLUIR PRODUTO -->
+    <div class="slide">
+      <h2>11. Módulo de Remoção: ExcluirProduto()</h2>
+      <p class="section-desc">Procedimento seguro para exclusão de peças do cadastro.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Confirmação de Segurança</h3>
+          <pre><code>int indice = EncontrarProduto(nome);
+if (indice == -1) { Erro("Nao encontrado."); return; }
+
+Console.WriteLine(produtos[indice]);
+Console.Write("Confirma a exclusao? (S/N): ");
+string resposta = Console.ReadLine().Trim().ToUpper();</code></pre>
+          <p style="margin-top:0.8rem;">Exibe os dados do item localizado antes de solicitar a confirmação explícita.</p>
+        </div>
+        <div class="info-card">
+          <h3>Efetivação e Atualização</h3>
+          <pre><code>if (resposta == "S")
+{
+    produtos.RemoveAt(indice);
+    SalvarProdutos();
+    Sucesso("Produto excluido com sucesso.");
+}
+else
+{
+    Console.WriteLine("Exclusao cancelada.");
+}</code></pre>
+          <p style="margin-top:0.8rem;">Remove pelo índice numérico e reescreve o arquivo no disco.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: REALIZAR VENDA -->
+    <div class="slide">
+      <h2>12. Motor de Vendas: RealizarVenda() - Parte 1</h2>
+      <p class="section-desc">Validação de estoque e cálculo financeiro do pedido.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Checagem de Saldo em Estoque</h3>
+          <pre><code>Produto produto = produtos[indice];
+int quantidade = LerInteiro("Quantidade a vender: ", 1);
+
+if (quantidade > produto.Quantidade)
+{
+    Erro("Estoque insuficiente. Venda cancelada.");
+    return;
+}</code></pre>
+          <p style="margin-top:0.8rem;">Impede vendas que superem a quantidade em estoque.</p>
+        </div>
+        <div class="info-card">
+          <h3>Cálculo do Total da Compra</h3>
+          <pre><code>decimal total = produto.Preco * quantidade;
+Console.WriteLine("Total: " + total.ToString("C"));</code></pre>
+          <p style="margin-top:0.8rem;">Calcula o valor e formata como moeda corrente local (<code>ToString("C")</code>).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: PROCESSAR VENDA -->
+    <div class="slide">
+      <h2>13. Motor de Vendas: RealizarVenda() - Parte 2</h2>
+      <p class="section-desc">Baixa no estoque, geração do histórico e persistência.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Atualização do Item em Memória</h3>
+          <pre><code>produto.Quantidade -= quantidade;
+produtos[indice] = produto;</code></pre>
+          <p style="margin-top:0.8rem;">Subtrai a quantidade vendida e reatribui a struct atualizada no índice da lista.</p>
+        </div>
+        <div class="info-card">
+          <h3>Instanciação do Registro de Venda</h3>
+          <pre><code>Venda novaVenda = new Venda();
+novaVenda.NomeProduto = produto.Nome;
+novaVenda.Categoria = produto.Categoria;
+novaVenda.Quantidade = quantidade;
+novaVenda.PrecoUnitario = produto.Preco;
+novaVenda.Total = total;
+novaVenda.Data = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+vendas.Add(novaVenda);
+SalvarProdutos(); SalvarVendas();</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: RELATORIO VENDAS -->
+    <div class="slide">
+      <h2>14. Relatório e Inteligência: RelatorioVendas()</h2>
+      <p class="section-desc">Consolidação do faturamento geral e agrupamento por categoria.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Acúmulo e Identificação de Categorias</h3>
+          <pre><code>for (int i = 0; i < vendas.Count; i++) {
+    Console.WriteLine(vendas[i]);
+    totalGeral += vendas[i].Total;
+    if (!categorias.Contains(vendas[i].Categoria))
+        categorias.Add(vendas[i].Categoria);
+}</code></pre>
+          <p style="margin-top:0.6rem;">Soma o faturamento total e cria a lista de categorias que tiveram vendas.</p>
+        </div>
+        <div class="info-card">
+          <h3>Cálculo do Faturamento por Categoria</h3>
+          <pre><code>for (int i = 0; i < categorias.Count; i++) {
+    decimal totalCategoria = 0;
+    for (int j = 0; j < vendas.Count; j++) {
+        if (vendas[j].Categoria == categorias[i])
+            totalCategoria += vendas[j].Total;
+    }
+    Console.WriteLine(categorias[i] + ": " + 
+        totalCategoria.ToString("C"));
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: PERSISTENCIA SALVAR -->
+    <div class="slide">
+      <h2>15. Persistência de Dados: Método Salvar (Linha 360+)</h2>
+      <p class="section-desc">Escrita de produtos e vendas no formato delimitado por pipe (<code>|</code>).</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>SalvarProdutos() em Detalhes</h3>
+          <pre><code>using (StreamWriter escritor = 
+    new StreamWriter(arquivoProdutos, false))
+{
+    for (int i = 0; i < produtos.Count; i++)
+    {
+        Produto p = produtos[i];
+        escritor.WriteLine(
+            LimparCampo(p.Nome) + "|" +
+            LimparCampo(p.Categoria) + "|" +
+            p.Quantidade + "|" +
+            p.Preco.ToString(CultureInfo.InvariantCulture));
+    }
+}</code></pre>
+        </div>
+        <div class="info-card">
+          <h3>Pontos Críticos de Arquitetura</h3>
+          <ul>
+            <li><strong>Bloco using:</strong> Garante liberação do arquivo na conclusão da escrita.</li>
+            <li><strong>Sobrescrita (false):</strong> O segundo parâmetro <code>false</code> substitui o conteúdo do arquivo com os dados atualizados.</li>
+            <li><strong>InvariantCulture:</strong> Garante formato numérico universal (ex: <code>1500.50</code> com ponto).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 17: PERSISTENCIA CARREGAR -->
+    <div class="slide">
+      <h2>16. Persistência de Dados: Método Carregar (Linha 360+)</h2>
+      <p class="section-desc">Leitura e conversão dos arquivos de texto para objetos em memória.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>CarregarProdutos() em Detalhes</h3>
+          <pre><code>if (!File.Exists(arquivoProdutos)) return;
+string[] linhas = File.ReadAllLines(arquivoProdutos);
+
+for (int i = 0; i < linhas.Length; i++) {
+    string[] partes = linhas[i].Split('|');
+    if (partes.Length == 4 &&
+        int.TryParse(partes, out int qtd) &&
+        decimal.TryParse(partes, NumberStyles.Number,
+            CultureInfo.InvariantCulture, out decimal preco)) {
+        // Popula Produto e adiciona em produtos
+    }
+}</code></pre>
+        </div>
+        <div class="info-card">
+          <h3>Tratamento de Exceções e Falhas</h3>
+          <ul>
+            <li><strong>File.Exists:</strong> Aborta a leitura com segurança se o arquivo ainda não tiver sido criado.</li>
+            <li><strong>Split('|'):</strong> Quebra a linha nos campos originais.</li>
+            <li><strong>int.TryParse e decimal.TryParse:</strong> Previnem travamentos do programa caso o arquivo texto seja modificado incorretamente.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 18: SANITIZACAO E VALIDACAO -->
+    <div class="slide">
+      <h2>17. Sanitização e Validação de Entradas</h2>
+      <p class="section-desc">Defesas contra erros de digitação e corrupção de arquivos.</p>
+      <div class="grid-3">
+        <div class="info-card">
+          <h3>LimparCampo()</h3>
+          <pre><code>static string LimparCampo(string texto) {
+    return texto.Replace("|", "/")
+                .Replace("\r", " ")
+                .Replace("\n", " ");
+}</code></pre>
+          <p style="margin-top:0.5rem;">Substitui o caractere <code>|</code> por <code>/</code> e remove quebras de linha para evitar corrupção nos dados.</p>
+        </div>
+        <div class="info-card">
+          <h3>LerInteiro()</h3>
+          <pre><code>while (true) {
+    Console.Write(mensagem);
+    if (int.TryParse(Console.ReadLine(), 
+        out valor) && valor >= minimo 
+        && valor <= maximo)
+        return valor;
+    Erro("Digite um inteiro valido.");
+}</code></pre>
+          <p style="margin-top:0.5rem;">Força a entrada correta de um número dentro dos limites esperados.</p>
+        </div>
+        <div class="info-card">
+          <h3>LerDecimal()</h3>
+          <pre><code>entrada = entrada.Trim()
+                 .Replace(',', '.');
+if (decimal.TryParse(entrada, 
+    NumberStyles.Number, 
+    CultureInfo.InvariantCulture, 
+    out valor) && valor >= minimo)
+    return valor;</code></pre>
+          <p style="margin-top:0.5rem;">Substitui vírgulas por pontos aceitando qualquer padrão do usuário.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 19: INTERFACE E CONCLUSAO -->
+    <div class="slide">
+      <h2>18. Interface de Console e Estilização Visual</h2>
+      <p class="section-desc">Padronização do feedback em cores no terminal.</p>
+      <div class="grid-2">
+        <div class="info-card">
+          <h3>Funções de Estilo Visual</h3>
+          <ul>
+            <li><strong>Titulo():</strong> Imprime o cabeçalho decorado em Amarelo (<code>ConsoleColor.Yellow</code>).</li>
+            <li><strong>Erro():</strong> Exibe alertas de falha em Vermelho (<code>ConsoleColor.Red</code>).</li>
+            <li><strong>Sucesso():</strong> Exibe mensagens de confirmação em Verde (<code>ConsoleColor.Green</code>).</li>
+            <li><strong>Console.ResetColor():</strong> Garante a restauração das cores padrão do terminal após cada mensagem.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Controle de Cadência com Pausar()</h3>
+          <pre><code>static void Pausar()
+{
+    Console.WriteLine(
+        "\nPressione ENTER para continuar...");
+    Console.ReadLine();
+}</code></pre>
+          <p style="margin-top:0.8rem;">Segura a tela permitindo que o usuário analise o relatório ou resultado antes de retornar ao menu principal.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 20: SLIDE FINAL -->
+    <div class="slide">
+      <div class="thanks-container">
+        <div class="hero-badge">UNIFASAR • Engenharia de Software</div>
+        <h1 class="thanks-title">Obrigado!</h1>
+        <p class="thanks-text">
+          Agradecemos a atenção do professor e da turma. Estamos à disposição para dúvidas sobre a arquitetura e funcionamento do código do sistema <strong>TechParts Store</strong>.
+        </p>
+        <div style="background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:1.5rem 2.5rem; border-radius:16px; width:100%; max-width:600px;">
+          <span style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.8rem;">Equipe de Desenvolvimento</span>
+          <div style="display:flex; justify-content:center; gap:2rem;">
+            <span style="font-size:1.3rem; font-weight:800; color:var(--accent-cyan);">Bruno Corrêa</span>
+            <span style="font-size:1.3rem; font-weight:800; color:var(--accent-purple);">Vitor Gabriel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de Navegação do Canto Inferior -->
+    <div class="nav-hint">
+      <span>Navegue usando</span>
+      <span class="key-badge">←</span>
+      <span class="key-badge">→</span>
+      <span>ou clique nos lados da tela</span>
+      <span style="margin-left: 10px;" class="slide-number" id="slideNum">1 / 20</span>
+    </div>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const progress = document.getElementById('progress');
+    const slideNum = document.getElementById('slideNum');
+    const viewport = document.getElementById('viewport');
+    
+    let currentSlide = 0;
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      
+      const percentage = ((currentSlide + 1) / slides.length) * 100;
+      progress.style.width = `${percentage}%`;
+      slideNum.textContent = `${currentSlide + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlides();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlides();
+      }
+    }
+
+    // Atalhos do Teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+
+    // Clique na Tela (Direita avança | Esquerda volta)
+    viewport.addEventListener('click', (e) => {
+      const rect = viewport.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      
+      if (clickX > rect.width / 2) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    });
+
+    updateSlides();
+  </script>
+</body>
+</html>
+```
