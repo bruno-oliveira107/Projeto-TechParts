@@ -1,0 +1,2 @@
+C:\Users\vitor\OneDrive\Área de Trabalho\Trabalho Ronam\ConsoleApp1\ConsoleApp1\obj\Release\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\vitor\OneDrive\Área de Trabalho\Trabalho Ronam\ConsoleApp1\ConsoleApp1\obj\Release\ConsoleApp1.csproj.CoreCompileInputs.cache
